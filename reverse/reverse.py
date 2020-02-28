@@ -1,5 +1,5 @@
 class Node:
-  def __init__(self, value=None, next_node=None):
+  def __init__(self, value = None, next_node = None):
     # the value at this linked list node
     self.value = value
     # reference to the next node in the list
@@ -43,5 +43,39 @@ class LinkedList:
     return False
 
   def reverse_list(self):
-    # TO BE COMPLETED
-    pass
+    if self.head is None or self.head.get_next() is None:
+      return
+
+    prev = self.head
+    node = self.head.get_next()
+    self.head.set_next(None)
+
+    while node:
+      print("Count")
+      temp = node.get_next()
+      node.set_next(prev)
+      prev = node
+      node = temp
+
+  def printAll(self):
+    node = self.head
+    while node.next_node:
+      print(node.value)
+      node = node.next_node
+    print(node.value)
+
+
+myList = LinkedList()
+
+myList.add_to_head(1)
+myList.add_to_head(2)
+myList.add_to_head(3)
+myList.add_to_head(4)
+myList.add_to_head(5)
+
+myList.printAll()
+
+# print(myList.head.value) # 5
+myList.reverse_list()
+myList.printAll()
+# print(myList.head.value) # 1
