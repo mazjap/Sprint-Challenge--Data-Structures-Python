@@ -52,22 +52,22 @@ class ArrayRingBuffer:
 
 
 
-buffer = ArrayRingBuffer(5)
-buffer.append('a')
-buffer.append('b')
-buffer.append('c')
-buffer.append('d')
-print(buffer.get()) # ['a', 'b', 'c', 'd']
+# buffer = ArrayRingBuffer(5)
+# buffer.append('a')
+# buffer.append('b')
+# buffer.append('c')
+# buffer.append('d')
+# print(buffer.get()) # ['a', 'b', 'c', 'd']
 
-buffer.append('e')
-print(buffer.get()) # ['a', 'b', 'c', 'd', 'e']
+# buffer.append('e')
+# print(buffer.get()) # ['a', 'b', 'c', 'd', 'e']
 
-buffer.append('f')
-print(buffer.get()) # ['f', 'b', 'c', 'd', 'e']
+# buffer.append('f')
+# print(buffer.get()) # ['f', 'b', 'c', 'd', 'e']
 
-buffer.append('g')
-buffer.append('h')
-buffer.append('i')
-print(buffer.get()) # ['f', 'g', 'h', 'i', 'e']
+# buffer.append('g')
+# buffer.append('h')
+# buffer.append('i')
+# print(buffer.get()) # ['f', 'g', 'h', 'i', 'e']
 
-print(len(buffer.storage))
+# print(len(buffer.storage))
