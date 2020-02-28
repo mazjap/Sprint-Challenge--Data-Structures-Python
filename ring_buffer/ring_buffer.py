@@ -3,12 +3,12 @@ from doubly_linked_list import DoublyLinkedList
 
 class RingBuffer:
     def __init__(self, capacity):
-        self.capacity = capacity - 1
+        self.capacity = capacity
         self.current = None
         self.storage = DoublyLinkedList()
 
     def append(self, item):
-        if self.storage.length <= self.capacity:
+        if self.storage.length < self.capacity:
             self.storage.add_to_tail(item)
         else:
             if self.current and self.current.next:
@@ -36,30 +36,38 @@ class RingBuffer:
 
 class ArrayRingBuffer:
     def __init__(self, capacity):
-        pass
+        self.storage = []
+        self.capacity = capacity
+        self.currentIndex = 0
 
     def append(self, item):
-        pass
+        if len(self.storage) < self.capacity:
+            self.storage.append(item)
+        else:
+            self.storage[self.currentIndex] = item
+            self.currentIndex = (self.currentIndex + 1) % self.capacity
 
     def get(self):
-        pass
+        return self.storage
 
 
 
-# buffer = RingBuffer(5)
-# buffer.append('a')
-# buffer.append('b')
-# buffer.append('c')
-# buffer.append('d')
-# print(buffer.get()) # ['a', 'b', 'c', 'd']
+buffer = ArrayRingBuffer(5)
+buffer.append('a')
+buffer.append('b')
+buffer.append('c')
+buffer.append('d')
+print(buffer.get()) # ['a', 'b', 'c', 'd']
 
-# buffer.append('e')
-# print(buffer.get()) # ['a', 'b', 'c', 'd', 'e']
+buffer.append('e')
+print(buffer.get()) # ['a', 'b', 'c', 'd', 'e']
 
-# buffer.append('f')
-# print(buffer.get()) # ['f', 'b', 'c', 'd', 'e']
+buffer.append('f')
+print(buffer.get()) # ['f', 'b', 'c', 'd', 'e']
 
-# buffer.append('g')
-# buffer.append('h')
-# buffer.append('i')
-# print(buffer.get()) # ['f', 'g', 'h', 'i', 'e']
+buffer.append('g')
+buffer.append('h')
+buffer.append('i')
+print(buffer.get()) # ['f', 'g', 'h', 'i', 'e']
+
+print(len(buffer.storage))
