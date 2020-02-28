@@ -46,16 +46,17 @@ class LinkedList:
     if self.head is None or self.head.get_next() is None:
       return
 
-    prev = self.head
-    node = self.head.get_next()
-    self.head.set_next(None)
+    prev = None
+    node = self.head
 
-    while node:
-      print("Count")
+    while node.next_node:
       temp = node.get_next()
       node.set_next(prev)
       prev = node
       node = temp
+
+    self.head = node
+    self.head.set_next(prev)
 
   def printAll(self):
     node = self.head
@@ -73,7 +74,7 @@ myList.add_to_head(3)
 myList.add_to_head(4)
 myList.add_to_head(5)
 
-myList.printAll()
+# myList.printAll()
 
 # print(myList.head.value) # 5
 myList.reverse_list()
